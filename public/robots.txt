@@ -1,0 +1,6 @@
+# robots.txt for OMNEXA Technologies
+
+User-agent: *
+Allow: /
+
+Sitemap: https://omnexa.com/sitemap.xml
