@@ -1,21 +1,12 @@
 "use client"
 
 import { useState } from "react"
+import { Check, Upload, MessageSquare, AlertCircle, Users, DollarSign, Activity, Zap, Plus, FileText, Settings } from "lucide-react"
 import { Header } from "@/components/layout/header"
 import { Sidebar } from "@/components/layout/sidebar"
 import { StatsCard } from "@/components/dashboard/stats-card"
 import { QuickActions } from "@/components/dashboard/quick-actions"
 import { RecentActivity } from "@/components/dashboard/recent-activity"
-import {
-  Users,
-  DollarSign,
-  Activity,
-  Zap,
-  Plus,
-  Upload,
-  FileText,
-  Settings,
-} from "lucide-react"
 
 export default function DashboardPage() {
   const [sidebarOpen, setSidebarOpen] = useState(false)
@@ -81,64 +72,59 @@ export default function DashboardPage() {
   ]
 
   return (
-    <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-      <div className="min-h-screen bg-background">
-        <Sidebar isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} />
-        <div className="lg:pl-64">
-          <Header onMenuClick={() => setSidebarOpen(true)} />
-          <main className="p-4 md:p-6 lg:p-8">
-            <div className="mb-8">
-              <h1 className="text-3xl font-bold">Dashboard</h1>
-              <p className="text-muted-foreground mt-1">
-                Welcome back, John! Here's what's happening.
-              </p>
+    <div className="min-h-screen bg-background">
+      <Sidebar isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} />
+      <div className="lg:pl-64">
+        <Header onMenuClick={() => setSidebarOpen(true)} />
+        <main className="p-4 md:p-6 lg:p-8">
+          <div className="mb-8">
+            <h1 className="text-3xl font-bold">Dashboard</h1>
+            <p className="text-muted-foreground mt-1">
+              Welcome back, John! Here's what's happening.
+            </p>
+          </div>
+
+          {/* Stats Cards */}
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4 mb-8">
+            <StatsCard
+              title="Total Revenue"
+              value="$45,231.89"
+              change={{ value: 20.1, isPositive: true }}
+              icon={DollarSign}
+            />
+            <StatsCard
+              title="Active Users"
+              value="+2350"
+              change={{ value: 180.1, isPositive: true }}
+              icon={Users}
+            />
+            <StatsCard
+              title="Active Projects"
+              value="+573"
+              change={{ value: 19, isPositive: true }}
+              icon={Activity}
+            />
+            <StatsCard
+              title="Efficiency Score"
+              value="94.2%"
+              change={{ value: 4.3, isPositive: true }}
+              icon={Zap}
+            />
+          </div>
+
+          <div className="grid gap-6 lg:grid-cols-3">
+            {/* Quick Actions */}
+            <div className="lg:col-span-2">
+              <QuickActions actions={quickActions} />
             </div>
 
-            {/* Stats Cards */}
-            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4 mb-8">
-              <StatsCard
-                title="Total Revenue"
-                value="$45,231.89"
-                change={{ value: 20.1, isPositive: true }}
-                icon={DollarSign}
-              />
-              <StatsCard
-                title="Active Users"
-                value="+2350"
-                change={{ value: 180.1, isPositive: true }}
-                icon={Users}
-              />
-              <StatsCard
-                title="Active Projects"
-                value="+573"
-                change={{ value: 19, isPositive: true }}
-                icon={Activity}
-              />
-              <StatsCard
-                title="Efficiency Score"
-                value="94.2%"
-                change={{ value: 4.3, isPositive: true }}
-                icon={Zap}
-              />
+            {/* Recent Activity */}
+            <div>
+              <RecentActivity activities={recentActivities} />
             </div>
-
-            <div className="grid gap-6 lg:grid-cols-3">
-              {/* Quick Actions */}
-              <div className="lg:col-span-2">
-                <QuickActions actions={quickActions} />
-              </div>
-
-              {/* Recent Activity */}
-              <div>
-                <RecentActivity activities={recentActivities} />
-              </div>
-            </div>
-          </main>
-        </div>
+          </div>
+        </main>
       </div>
-    </ThemeProvider>
+    </div>
   )
 }
-
-import { Check, Upload, MessageSquare, AlertCircle } from "lucide-react"
-import { ThemeProvider } from "@/components/providers/theme-provider"

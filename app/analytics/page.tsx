@@ -1,20 +1,12 @@
 "use client"
 
 import { useState } from "react"
+import { BarChart3, TrendingUp, Users, DollarSign, ArrowUpRight, ArrowDownRight } from "lucide-react"
 import { Header } from "@/components/layout/header"
 import { Sidebar } from "@/components/layout/sidebar"
 import { ChartCard } from "@/components/analytics/chart-card"
 import { MetricGrid } from "@/components/analytics/metric-grid"
 import { DataTable } from "@/components/analytics/data-table"
-import { ThemeProvider } from "@/components/providers/theme-provider"
-import {
-  BarChart3,
-  TrendingUp,
-  Users,
-  DollarSign,
-  ArrowUpRight,
-  ArrowDownRight,
-} from "lucide-react"
 
 export default function AnalyticsPage() {
   const [sidebarOpen, setSidebarOpen] = useState(false)
@@ -43,72 +35,70 @@ export default function AnalyticsPage() {
   ]
 
   return (
-    <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-      <div className="min-h-screen bg-background">
-        <Sidebar isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} />
-        <div className="lg:pl-64">
-          <Header onMenuClick={() => setSidebarOpen(true)} />
-          <main className="p-4 md:p-6 lg:p-8">
-            <div className="mb-8 flex items-center justify-between">
-              <div>
-                <h1 className="text-3xl font-bold">Analytics</h1>
-                <p className="text-muted-foreground mt-1">
-                  Track your performance and insights
-                </p>
-              </div>
+    <div className="min-h-screen bg-background">
+      <Sidebar isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} />
+      <div className="lg:pl-64">
+        <Header onMenuClick={() => setSidebarOpen(true)} />
+        <main className="p-4 md:p-6 lg:p-8">
+          <div className="mb-8 flex items-center justify-between">
+            <div>
+              <h1 className="text-3xl font-bold">Analytics</h1>
+              <p className="text-muted-foreground mt-1">
+                Track your performance and insights
+              </p>
             </div>
+          </div>
 
-            {/* Metric Grid */}
-            <div className="mb-8">
-              <MetricGrid metrics={metrics} columns={4} />
-            </div>
+          {/* Metric Grid */}
+          <div className="mb-8">
+            <MetricGrid metrics={metrics} columns={4} />
+          </div>
 
-            {/* Charts */}
-            <div className="grid gap-6 lg:grid-cols-2 mb-8">
-              <ChartCard
-                title="Traffic Overview"
-                description="Page views over time"
-                icon={BarChart3}
-              >
-                <div className="h-64 flex items-center justify-center text-muted-foreground">
-                  <div className="text-center">
-                    <BarChart3 className="h-12 w-12 mx-auto mb-4 opacity-50" />
-                    <p>Chart visualization placeholder</p>
-                    <p className="text-sm">Integrate with Chart.js or Recharts</p>
-                  </div>
-                </div>
-              </ChartCard>
-
-              <ChartCard
-                title="Revenue Trend"
-                description="Monthly revenue breakdown"
-                icon={TrendingUp}
-                actions={{
-                  label: "Export",
-                  onClick: () => console.log("Export"),
-                }}
-              >
-                <div className="h-64 flex items-center justify-center text-muted-foreground">
-                  <div className="text-center">
-                    <TrendingUp className="h-12 w-12 mx-auto mb-4 opacity-50" />
-                    <p>Chart visualization placeholder</p>
-                    <p className="text-sm">Integrate with Chart.js or Recharts</p>
-                  </div>
-                </div>
-              </ChartCard>
-            </div>
-
-            {/* Data Table */}
+          {/* Charts */}
+          <div className="grid gap-6 lg:grid-cols-2 mb-8">
             <ChartCard
-              title="Traffic Sources"
-              description="Detailed breakdown by source"
-              icon={Users}
+              title="Traffic Overview"
+              description="Page views over time"
+              icon={BarChart3}
             >
-              <DataTable columns={columns} data={data} />
+              <div className="h-64 flex items-center justify-center text-muted-foreground">
+                <div className="text-center">
+                  <BarChart3 className="h-12 w-12 mx-auto mb-4 opacity-50" />
+                  <p>Chart visualization placeholder</p>
+                  <p className="text-sm">Integrate with Chart.js or Recharts</p>
+                </div>
+              </div>
             </ChartCard>
-          </main>
-        </div>
+
+            <ChartCard
+              title="Revenue Trend"
+              description="Monthly revenue breakdown"
+              icon={TrendingUp}
+              actions={{
+                label: "Export",
+                onClick: () => console.log("Export"),
+              }}
+            >
+              <div className="h-64 flex items-center justify-center text-muted-foreground">
+                <div className="text-center">
+                  <TrendingUp className="h-12 w-12 mx-auto mb-4 opacity-50" />
+                  <p>Chart visualization placeholder</p>
+                  <p className="text-sm">Integrate with Chart.js or Recharts</p>
+                </div>
+              </div>
+            </ChartCard>
+          </div>
+
+          {/* Data Table */}
+          <ChartCard
+            title="Traffic Sources"
+            description="Detailed breakdown by source"
+            icon={Users}
+          >
+            <DataTable columns={columns} data={data} />
+          </ChartCard>
+        </main>
       </div>
-    </ThemeProvider>
+    </div>
   )
 }
